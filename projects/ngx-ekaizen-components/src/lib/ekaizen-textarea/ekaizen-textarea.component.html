@@ -1,0 +1,43 @@
+<div class="w-100">
+  <div class="d-flex justify-content-between">
+    <label for="textarea">{{ label }}</label>
+    <div>
+      <label
+        *ngIf="!disabled || !readonly"
+        [class]="
+          value && value.length < maxlength
+            ? 'text-success font-weight-bold'
+            : 'text-danger font-weight-bold'
+        "
+      >{{ value && value.length ? value.length : '0' }}/{{ maxlength }}</label
+      >
+    </div>
+  </div>
+
+  <textarea
+    id="textarea"
+    class="w-100 form-control"
+    [ngClass]="{
+      'is-invalid': ngControl && errors.length && !disabled && !readonly,
+      'is-valid': ngControl && !errors.length && !disabled && !readonly
+    }"
+    [rows]="rows"
+    [maxlength]="maxlength"
+    [minlength]="minlength"
+    (blur)="onTouchedFn()"
+    (change)="onChange()"
+    (input)="onChange()"
+    [readonly]="readonly"
+    [(ngModel)]="value"
+    [disabled]="disabled"
+    [placeholder]="placeholder"
+    [required]="required"
+    [ngModelOptions]="{ standalone: true }"
+    [style]="'resize: ' + (!resize && 'none')"
+    name="textarea"
+  >
+  </textarea>
+  <div id="validation-feedback" class="invalid-feedback">
+    {{ ngControl && errors.length && translateErrorString(errors) }}
+  </div>
+</div>
