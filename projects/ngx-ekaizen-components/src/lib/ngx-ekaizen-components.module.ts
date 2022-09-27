@@ -16,7 +16,8 @@ import {CommonModule} from "@angular/common";
     CommonModule
   ],
   exports: [
-    NgxEkaizenComponentsComponent
+    NgxEkaizenComponentsComponent,
+    EkaizenTextareaComponent
   ]
 })
 export class NgxEkaizenComponentsModule { }
